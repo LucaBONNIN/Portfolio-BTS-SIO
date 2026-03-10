@@ -1,54 +1,434 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sample HTML Page</title>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luca BONNIN - Portfolio</title>
 
-        <link href="CSS\bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark" id="mobileNavbar" style="background-color: #c8a97e;">
-            <div class="container-fluid">
-                <span class="navbar-brand">Menu</span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="mobileMenu">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a href="#" class="nav-link text-white">About</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Skills</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Portfolio</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="d-flex" style="min-height: 100vh;">
+    <style>
+        :root {
+            --sidebar-bg: #a0522d;
+            --sidebar-width: 220px;
+            --accent: #c8733a;
+        }
 
-            <!-- Colonne gauche (sidebar) -->
-            <div class="text-white d-flex flex-column align-items-center justify-content-center text-center" style="width: 250px; min-width: 250px; background-color: #a0522d;" id="sidebar">
-                <h4 class="w-100">Menu</h4>
-                <ul class="nav flex-column align-items-center">
-                <li class="nav-item"><a href="#" class="nav-link text-white">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white">Skills</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white">Portfolio</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white">Contact</a></li>
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f5f2;
+        }
+
+        /* ── SIDEBAR ── */
+        #sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        #sidebar h4 {
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: .85rem;
+            opacity: .7;
+            margin-bottom: 2rem;
+        }
+
+        #sidebar .nav-link {
+            color: rgba(255,255,255,.75);
+            font-size: 1rem;
+            padding: .6rem 1.5rem;
+            border-radius: 6px;
+            transition: all .2s;
+            width: 100%;
+            text-align: center;
+        }
+
+        #sidebar .nav-link:hover,
+        #sidebar .nav-link.active {
+            color: #fff;
+            background: rgba(255,255,255,.15);
+        }
+
+        /* ── NAVBAR MOBILE ── */
+        #mobileNavbar { display: none; }
+
+        /* ── CONTENU PRINCIPAL ── */
+        #main-content {
+            margin-left: var(--sidebar-width);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            min-height: 100vh;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section:nth-child(even) {
+            background: #fff;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--sidebar-bg);
+            border-left: 5px solid var(--sidebar-bg);
+            padding-left: 16px;
+            margin-bottom: 40px;
+        }
+
+        /* ── ABOUT ── */
+        #about .lead {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        #about .badge-pill {
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: .85rem;
+            margin: 4px;
+            display: inline-block;
+        }
+
+        /* ── SKILLS ── */
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-item .skill-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 50px;
+            background: #e0d8d0;
+        }
+
+        .progress-bar {
+            background: var(--sidebar-bg);
+            border-radius: 50px;
+        }
+
+        /* ── PORTFOLIO ── */
+        .card-project {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,.08);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .card-project:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.14);
+        }
+
+        .card-project .card-img-top {
+            height: 180px;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .card-project .placeholder-img {
+            height: 180px;
+            background: linear-gradient(135deg, #a0522d44, #a0522d22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--sidebar-bg);
+        }
+
+        .tag {
+            font-size: .75rem;
+            background: #f0e8e0;
+            color: var(--sidebar-bg);
+            border-radius: 4px;
+            padding: 2px 8px;
+            margin-right: 4px;
+        }
+
+        /* ── CONTACT ── */
+        .contact-info a {
+            color: var(--sidebar-bg);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--sidebar-bg);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── RESPONSIVE MOBILE ── */
+        @media (max-width: 991px) {
+            #sidebar { display: none !important; }
+            #mobileNavbar { display: block !important; }
+            #main-content { margin-left: 0; }
+            section { padding: 60px 24px; }
+            .section-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR MOBILE -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mobileNavbar" style="background-color: var(--sidebar-bg);">
+        <div class="container-fluid">
+            <span class="navbar-brand fw-bold">Luca BONNIN</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mobileMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="#about"     class="nav-link text-white">About</a></li>
+                    <li class="nav-item"><a href="#skills"    class="nav-link text-white">Skills</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link text-white">Portfolio</a></li>
+                    <li class="nav-item"><a href="#contact"   class="nav-link text-white">Contact</a></li>
                 </ul>
             </div>
-
-            <!-- Contenu principal -->
-            <section>
-                <div class="flex-grow-1 p-4">
-                    <h1>Luca BONNIN</h1>
-                    <h2>Apprentit developer</h2>
-                </div>
-            </section>
-
         </div>
+    </nav>
 
-        <script src="JS\script.js"></script>
-    </body>
+    <!-- SIDEBAR DESKTOP -->
+    <div id="sidebar">
+        <h4>Menu</h4>
+        <ul class="nav flex-column w-100 px-3">
+            <li class="nav-item"><a href="#about"     class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#skills"    class="nav-link">Skills</a></li>
+            <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+            <li class="nav-item"><a href="#contact"   class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div id="main-content">
+
+        <!-- ── ABOUT ── -->
+        <section id="about">
+            <h2 class="section-title">About</h2>
+            <div class="row align-items-center g-5">
+                <div class="col-md-7">
+                    <h1 class="display-5 fw-bold mb-1">Luca BONNIN</h1>
+                    <p class="text-muted mb-4" style="font-size:1.1rem;">Apprenti Développeur · BTS SIO</p>
+                    <p class="lead">
+                        Passionné par le développement web, je suis actuellement en BTS SIO et je cherche une alternance pour mes trois prochaines années d'études.
+                    </p>
+                    <div class="mt-4">
+                        <span class="badge-pill">HTML / CSS, Bootstrap</span>
+                        <span class="badge-pill">JavaScript</span>
+                        <span class="badge-pill">PHP / Laravel</span>
+                        <span class="badge-pill">Python</span>
+                        <span class="badge-pill">SQL</span>
+                        <span class="badge-pill">C#</span>
+                        <span class="badge-pill">Git / GitHub</span>
+                    </div>
+                </div>
+                <div class="col-md-5 text-center">
+                    <!-- Remplace par ta vraie photo : <img src="photo.jpg" class="rounded-circle img-fluid" style="max-width:220px;"> -->
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center"
+                         style="width:200px;height:200px;background:#e8ddd5;font-size:5rem;color:var(--sidebar-bg);">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── SKILLS ── -->
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h5 class="mb-4 fw-semibold">Développement Web</h5>
+
+                    <div class="skill-item">
+                        <div class="skill-label"><span>HTML / CSS</span><span>80%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Bootstrap</span><span>70%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>JavaScript</span><span>55%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:55%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>PHP</span><span>50%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:50%"></div></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="mb-4 fw-semibold">Autres</h5>
+
+                    <div class="skill-item">
+                        <div class="skill-label"><span>SQL / Base de données</span><span>60%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Git / GitHub</span><span>50%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:50%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Linux</span><span>40%</span></div>
+                        <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── PORTFOLIO ── -->
+        <section id="portfolio">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="row g-4">
+
+                <!-- Carte projet 1 -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card card-project h-100">
+                        <div class="placeholder-img"><i class="bi bi-globe"></i></div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Ce Portfolio</h5>
+                            <p class="card-text text-muted">Mon portfolio personnel créé avec HTML, CSS et Bootstrap.</p>
+                            <div class="mt-2">
+                                <span class="tag">HTML</span>
+                                <span class="tag">Bootstrap</span>
+                                <span class="tag">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="https://github.com/LucaBONNIN/Portfolio-BTS-SIO" target="_blank" class="btn btn-sm"
+                               style="background:var(--sidebar-bg);color:white;">
+                                <i class="bi bi-github me-1"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte projet 2 – à compléter -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card card-project h-100">
+                        <div class="placeholder-img"><i class="bi bi-code-slash"></i></div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Projet 2</h5>
+                            <p class="card-text text-muted">Description du projet à compléter.</p>
+                            <div class="mt-2">
+                                <span class="tag">PHP</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="#" class="btn btn-sm" style="background:var(--sidebar-bg);color:white;">
+                                <i class="bi bi-github me-1"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte projet 3 – à compléter -->
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card card-project h-100">
+                        <div class="placeholder-img"><i class="bi bi-laptop"></i></div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Projet 3</h5>
+                            <p class="card-text text-muted">Description du projet à compléter.</p>
+                            <div class="mt-2">
+                                <span class="tag">JS</span>
+                                <span class="tag">API</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="#" class="btn btn-sm" style="background:var(--sidebar-bg);color:white;">
+                                <i class="bi bi-github me-1"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ── CONTACT ── -->
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="row g-5 align-items-start">
+                <div class="col-md-5">
+                    <p class="text-muted mb-4">Tu veux échanger ou collaborer ? N'hésite pas à me contacter !</p>
+                    <ul class="list-unstyled contact-info">
+                        <li class="d-flex align-items-center gap-3 mb-3">
+                            <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                            <a href="mailto:lucabonnin7@gmail.com">lucabonnin7@gmail.com</a>
+                        </li>
+                        <li class="d-flex align-items-center gap-3 mb-3">
+                            <div class="contact-icon"><i class="bi bi-github"></i></div>
+                            <a href="https://github.com/LucaBONNIN" target="_blank">github.com/LucaBONNIN</a>
+                        </li>
+                        <li class="d-flex align-items-center gap-3 mb-3">
+                            <div class="contact-icon"><i class="bi bi-linkedin"></i></div>
+                            <a href="#" target="_blank">linkedin.com/in/luca-bonnin</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-7">
+                    <div class="p-4 rounded-3 bg-white shadow-sm">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Nom</label>
+                            <input type="text" class="form-control" placeholder="Ton nom">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control" placeholder="ton@email.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Message</label>
+                            <textarea class="form-control" rows="4" placeholder="Ton message..."></textarea>
+                        </div>
+                        <button class="btn w-100 text-white fw-semibold"
+                                style="background:var(--sidebar-bg);">
+                            Envoyer <i class="bi bi-send ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /main-content -->
+</body>
 </html>
