@@ -200,3 +200,107 @@ section:nth-child(even) {
     section { padding: 60px 24px; }
     .section-title { font-size: 1.8rem; }
 }
+
+/* ── Tech Cloud ───────────────────────────── */
+.tech-cloud-wrapper {
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.tech-cloud {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    flex: 1 1 400px;
+}
+
+.tech-bubble {
+    position: absolute;
+    left: var(--x);
+    top:  var(--y);
+    transform: scale(var(--s)) translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    animation: floatBubble 4s ease-in-out infinite;
+    animation-delay: var(--d);
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.tech-bubble img {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    padding: 8px;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.tech-bubble span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.tech-bubble:hover img {
+    box-shadow: 0 8px 28px rgba(45, 212, 191, 0.35);
+    transform: scale(1.12);
+}
+
+.tech-bubble.active img {
+    box-shadow: 0 0 0 3px var(--accent), 0 8px 28px rgba(45,212,191,0.3);
+}
+
+@keyframes floatBubble {
+    0%, 100% { transform: scale(var(--s)) translate(-50%, -50%) translateY(0); }
+    50%       { transform: scale(var(--s)) translate(-50%, -50%) translateY(-8px); }
+}
+
+/* ── Panneau projet ───────────────────────── */
+.skill-project-panel {
+    flex: 0 0 240px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    display: none;
+    position: relative;
+    animation: fadeInPanel 0.25s ease;
+}
+
+.skill-project-panel.open { display: block; }
+
+.skill-panel-close {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: none; border: none;
+    font-size: 1rem; color: #94a3b8;
+    cursor: pointer;
+}
+
+.skill-panel-logo img {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    padding: 6px;
+    background: #f1f5f9;
+    margin-bottom: 12px;
+}
+
+.skill-project-panel h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+
+@keyframes fadeInPanel {
+    from { opacity: 0; transform: translateX(12px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+    .tech-cloud { height: 420px; }
+    .skill-project-panel { flex: 1 1 100%; }
+}
