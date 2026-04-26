@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Dépôt Facture — Spie Batignolles</title>
+    <link rel="stylesheet" href="../CSS/stylePortailFournisseur.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <a href="index.html" class="back-link">← Retour au portfolio</a>
+
+    <div class="project-header">
+        <h1>Portail Dépôt Facture</h1>
+        <p class="subtitle">Application web de dépôt de factures fournisseurs — Spie Batignolles</p>
+    </div>
+    <div class="tags">
+        <span class="tag csharp">C#</span>
+        <span class="tag aspnet">ASP.NET Core</span>
+        <span class="tag ef">Entity Framework</span>
+        <span class="tag html">HTML / CSS</span>
+        <span class="tag js">JavaScript</span>
+        <span class="tag sql">SQL Server</span>
+        <span class="tag prod">✓ En production</span>
+    </div>
+
+    <!-- ══ 1. CONTEXTE ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">📋</span>Contexte du projet</h2>
+        <div class="context-card">
+            <p><strong>Spie Batignolles</strong> est un groupe français majeur du BTP intervenant dans la construction, les travaux publics et l'énergie. Ses chantiers font intervenir de nombreux <strong>sous-traitants et agences d'intérim</strong> qui doivent régulièrement soumettre leurs factures au service comptabilité.</p>
+            <p>Avant ce projet, ce processus était géré manuellement par email, sans format standardisé, ce qui générait des erreurs, des oublis de pièces jointes et une perte de temps importante. L'objectif était de créer un <strong>portail web unifié</strong> permettant aux fournisseurs de déposer leurs factures en ligne avec tous les justificatifs requis, les données étant automatiquement transmises par email et enregistrées en base de données.</p>
+            <p>Projet développé en <strong>1 mois</strong> dans le cadre de l'alternance, à partir d'une coquille initiale fournie par l'entreprise. L'ensemble de la base de données et du code frontend / backend ont été construits par l'équipe.</p>
+            <div class="actors">
+                <div class="actor-chip">👨‍💻 Luca BONNIN<span class="role">BTS SIO SLAM — Co-développeur</span></div>
+                <div class="actor-chip">👨‍💻 Timéo Pilatte<span class="role">BTS SIO SLAM — Co-développeur</span></div>
+                <div class="actor-chip">🏢 Spie Batignolles<span class="role">Commanditaire — Utilisé en production</span></div>
+            </div>
+            <div class="prod-badge">Application actuellement en production chez Spie Batignolles</div>
+        </div>
+    </section>
+
+    <!-- ══ 2. TECHNOLOGIES ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">⚙️</span>Technologies utilisées</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon" style="background:#ede9fe">🟣</div>
+                <div>
+                    <h3>C# / ASP.NET Core</h3>
+                    <div class="version">Backend — contrôleurs MVC</div>
+                    <p>Gestion des routes, traitement des formulaires, envoi d'emails SMTP et logique métier côté serveur.</p>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon" style="background:#dcfce7">🗄️</div>
+                <div>
+                    <h3>Entity Framework Core</h3>
+                    <div class="version">ORM — migrations automatiques</div>
+                    <p>Mapping objet-relationnel entre les modèles C# et les tables SQL Server. Migrations versionnées.</p>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon" style="background:#fee2e2">🔴</div>
+                <div>
+                    <h3>SQL Server</h3>
+                    <div class="version">Base de données relationnelle</div>
+                    <p>Stockage des factures, sociétés et types. Clés étrangères pour l'intégrité référentielle. Géré via SQL Server Management Studio.</p>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon" style="background:#fff7ed">🌐</div>
+                <div>
+                    <h3>HTML / CSS</h3>
+                    <div class="version">Frontend — interface fournisseur</div>
+                    <p>Interface épurée aux couleurs de Spie Batignolles. Formulaire tabulaire responsive adapté aux différents types de facture.</p>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon" style="background:#fef9c3">⚡</div>
+                <div>
+                    <h3>JavaScript</h3>
+                    <div class="version">Comportement dynamique du formulaire</div>
+                    <p>Affichage conditionnel des champs selon le type de facture sélectionné, sans rechargement de page.</p>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon" style="background:#dbeafe">📧</div>
+                <div>
+                    <h3>SMTP — Envoi d'email</h3>
+                    <div class="version">Notification automatique</div>
+                    <p>À chaque soumission, un email formaté contenant toutes les informations et pièces jointes est envoyé à l'adresse générique du service comptabilité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ 3. FONCTIONNEMENT ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">🔄</span>Fonctionnement de l'application</h2>
+        <p class="prose" style="margin-bottom:24px;">Le portail guide le fournisseur en trois étapes successives. Le formulaire affiché s'adapte dynamiquement au type de facture choisi, exposant uniquement les champs pertinents.</p>
+        <div class="flow-wrapper">
+            <!-- Etape 1 -->
+            <div style="text-align:center; margin-bottom:8px;">
+                <div class="flow-node main">🌐 Portail Dépôt Facture</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <!-- Etape 2 -->
+            <div style="text-align:center; margin-bottom:8px;">
+                <div class="flow-node main" style="max-width:480px; font-size:0.88rem; padding:12px 20px;">
+                    Choix de la société sur laquelle le fournisseur doit déposer sa facture<br>
+                    <span style="font-size:0.78rem; opacity:0.8; font-weight:400;">— Liste déroulante —</span>
+                </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <!-- Etape 3 -->
+            <div style="text-align:center; margin-bottom:16px;">
+                <div class="flow-node main">Choix du Type de Facture</div>
+            </div>
+            <!-- Branches -->
+            <div class="flow-branches">
+                <!-- Sous Traitance -->
+                <div class="flow-branch">
+                    <div class="flow-branch-title">Sous Traitance</div>
+                    <div class="flow-form-box">
+                        <div class="form-title">Formulaire à compléter</div>
+                        <ul>
+                            <li>N° de Siret de la société</li>
+                            <li>N° de Contrat</li>
+                            <li>N° CAE</li>
+                            <li>N° de Facture</li>
+                            <li>Interlocuteur</li>
+                            <li>Adresse Mail</li>
+                            <li>Montant TTC</li>
+                            <li>📎 Pièces jointes</li>
+                        </ul>
+                    </div>
+                    <div class="flow-result">Envoi d'un mail avec les informations et pièces jointes à l'adresse générique de la compta STT</div>
+                </div>
+                <!-- Interim -->
+                <div class="flow-branch">
+                    <div class="flow-branch-title">Intérim</div>
+                    <div class="flow-form-box">
+                        <div class="form-title">Formulaire à compléter</div>
+                        <ul>
+                            <li>N° de Siret de la société</li>
+                            <li>N° de Contrat DSK</li>
+                            <li>N° préfacture</li>
+                            <li>N° CAE</li>
+                            <li>N° de Facture</li>
+                            <li>Interlocuteur</li>
+                            <li>Adresse Mail</li>
+                            <li>Montant TTC</li>
+                            <li>📎 Pièces jointes</li>
+                        </ul>
+                    </div>
+                    <div class="flow-result">Envoi d'un mail avec les informations et pièces jointes à l'adresse générique hesoft</div>
+                </div>
+                <!-- Autres -->
+                <div class="flow-branch">
+                    <div class="flow-branch-title">Autres</div>
+                    <div class="flow-form-box">
+                        <div class="form-title">Formulaire à compléter</div>
+                        <ul>
+                            <li>N° de Siret de la société</li>
+                            <li>N° de Commande</li>
+                            <li>N° CAE</li>
+                            <li>N° de Facture</li>
+                            <li>Interlocuteur</li>
+                            <li>Montant TTC</li>
+                            <li>📎 Pièces jointes</li>
+                        </ul>
+                    </div>
+                    <div class="flow-result">Envoi d'un mail avec les informations et pièces jointes à l'adresse générique hesoft</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ 4. FONCTIONNALITÉS ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">✨</span>Fonctionnalités</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-emoji" style="background:#fef3c7">📋</div>
+                    <h3>Formulaire dynamique</h3>
+                </div>
+                <p>Le formulaire adapte ses champs en temps réel selon le type de facture sélectionné via JavaScript, sans rechargement de page.</p>
+                <ul class="feature-detail">
+                    <li>3 types : Sous Traitance, Intérim, Autres</li>
+                    <li>Champs conditionnels (DSK, préfacture…)</li>
+                    <li>Validation des champs obligatoires</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-emoji" style="background:#dbeafe">📎</div>
+                    <h3>Upload de pièces jointes</h3>
+                </div>
+                <p>Le fournisseur peut joindre sa facture et ses documents complémentaires directement depuis le formulaire.</p>
+                <ul class="feature-detail">
+                    <li>Sélection multi-fichiers</li>
+                    <li>Transmission par email avec les données</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-emoji" style="background:#dcfce7">📧</div>
+                    <h3>Notification par email</h3>
+                </div>
+                <p>À chaque soumission, un email formaté reprenant toutes les données saisies est envoyé automatiquement au service comptabilité concerné.</p>
+                <ul class="feature-detail">
+                    <li>Adresse destinataire selon le type de facture</li>
+                    <li>Corps du mail structuré en tableau</li>
+                    <li>Pièces jointes incluses</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-emoji" style="background:#ede9fe">🗃️</div>
+                    <h3>Persistance en base de données</h3>
+                </div>
+                <p>Chaque dépôt de facture est enregistré en base SQL Server via Entity Framework, permettant un historique complet des soumissions.</p>
+                <ul class="feature-detail">
+                    <li>Stockage de tous les champs du formulaire</li>
+                    <li>Clés étrangères vers Societes et Type_Factures</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-emoji" style="background:#fff7ed">🏢</div>
+                    <h3>Multi-sociétés</h3>
+                </div>
+                <p>Le fournisseur sélectionne la société Spie Batignolles concernée depuis une liste déroulante alimentée dynamiquement depuis la base de données.</p>
+                <ul class="feature-detail">
+                    <li>Table <code>dbo.Societes</code> administrable</li>
+                    <li>Correspondance automatique email / type</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-emoji" style="background:#fee2e2">🎨</div>
+                    <h3>Charte graphique Spie Batignolles</h3>
+                </div>
+                <p>Interface entièrement aux couleurs de l'entreprise : logo officiel, couleur ambre, typographie sobre adaptée à un usage professionnel.</p>
+                <ul class="feature-detail">
+                    <li>Logo Spie Batignolles intégré</li>
+                    <li>Palette officielle orange / blanc</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ 5. APERÇU DU FORMULAIRE ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">🖥️</span>Aperçu du formulaire</h2>
+        <p class="prose" style="margin-bottom:20px;">Le formulaire affiche des champs différents selon le type de facture choisi. Voici les trois variantes :</p>
+        <div class="form-tabs">
+            <div class="form-tab active" onclick="showTab('initial')">État initial</div>
+            <div class="form-tab" onclick="showTab('st')">Sous Traitance</div>
+            <div class="form-tab" onclick="showTab('interim')">Intérim</div>
+            <div class="form-tab" onclick="showTab('autres')">Autres</div>
+        </div>
+
+        <!-- Initial -->
+        <div class="form-preview active" id="tab-initial">
+            <div style="padding:12px 16px 0; display:flex; align-items:center; justify-content:space-between;">
+                <div style="font-size:0.82rem; font-weight:800; color:#1e293b; background:#f59e0b; padding:6px 12px; border-radius:4px;">spie batignolles</div>
+            </div>
+            <div style="margin:12px 16px 0 16px;">
+                <div class="form-header-bar">Facture</div>
+            </div>
+            <table class="form-table" style="margin:0 16px; width:calc(100% - 32px);">
+                <tr><td>Société</td><td class="value">— sélectionner —</td></tr>
+                <tr><td>Type de Facture</td><td class="value">— sélectionner —</td></tr>
+            </table>
+            <div style="padding:4px 16px 16px;"><span class="form-submit">Envoyer la demande</span></div>
+        </div>
+
+        <!-- Sous Traitance -->
+        <div class="form-preview" id="tab-st">
+            <div style="padding:12px 16px 0; display:flex; align-items:center; justify-content:space-between;">
+                <div style="font-size:0.82rem; font-weight:800; color:#1e293b; background:#f59e0b; padding:6px 12px; border-radius:4px;">spie batignolles</div>
+            </div>
+            <div style="margin:12px 16px 0 16px;">
+                <div class="form-header-bar">Facture</div>
+            </div>
+            <table class="form-table" style="margin:0 16px; width:calc(100% - 32px);">
+                <tr><td>Société</td><td class="value">—</td></tr>
+                <tr><td>Type de Facture</td><td class="value">Sous Traitance</td></tr>
+                <tr><td>N° de Siret de la société</td><td>Obligatoire</td></tr>
+                <tr><td>N° de Contrat</td><td>Obligatoire</td></tr>
+                <tr><td>N° CAE</td><td>Obligatoire</td></tr>
+                <tr><td>N° de facture</td><td>Obligatoire</td></tr>
+                <tr><td>Interlocuteur</td><td>Obligatoire</td></tr>
+                <tr><td>Adresse Mail</td><td>exemple@domaine.com</td></tr>
+                <tr><td>Montant TTC</td><td>Obligatoire</td></tr>
+                <tr><td>Ajouter une pièce jointe</td><td class="value">Choisir des fichiers</td></tr>
+            </table>
+            <div style="padding:4px 16px 16px;"><span class="form-submit">Envoyer la demande</span></div>
+        </div>
+
+        <!-- Interim -->
+        <div class="form-preview" id="tab-interim">
+            <div style="padding:12px 16px 0;">
+                <div style="font-size:0.82rem; font-weight:800; color:#1e293b; background:#f59e0b; padding:6px 12px; border-radius:4px; display:inline-block;">spie batignolles</div>
+            </div>
+            <div style="margin:12px 16px 0 16px;">
+                <div class="form-header-bar">Facture</div>
+            </div>
+            <table class="form-table" style="margin:0 16px; width:calc(100% - 32px);">
+                <tr><td>Société</td><td class="value">—</td></tr>
+                <tr><td>Type de Facture</td><td class="value">Intérim</td></tr>
+                <tr><td>N° de Siret de la société</td><td>Obligatoire</td></tr>
+                <tr><td>N° de Contrat DSK</td><td>Obligatoire</td></tr>
+                <tr><td>N° préfacture</td><td>Obligatoire</td></tr>
+                <tr><td>N° CAE</td><td>Obligatoire</td></tr>
+                <tr><td>N° de facture</td><td>Obligatoire</td></tr>
+                <tr><td>Interlocuteur</td><td>Obligatoire</td></tr>
+                <tr><td>Adresse Mail</td><td>exemple@domaine.com</td></tr>
+                <tr><td>Montant TTC</td><td>Obligatoire</td></tr>
+                <tr><td>Ajouter une pièce jointe</td><td class="value">Choisir des fichiers</td></tr>
+            </table>
+            <div style="padding:4px 16px 16px;"><span class="form-submit">Envoyer la demande</span></div>
+        </div>
+
+        <!-- Autres -->
+        <div class="form-preview" id="tab-autres">
+            <div style="padding:12px 16px 0;">
+                <div style="font-size:0.82rem; font-weight:800; color:#1e293b; background:#f59e0b; padding:6px 12px; border-radius:4px; display:inline-block;">spie batignolles</div>
+            </div>
+            <div style="margin:12px 16px 0 16px;">
+                <div class="form-header-bar">Facture</div>
+            </div>
+            <table class="form-table" style="margin:0 16px; width:calc(100% - 32px);">
+                <tr><td>Société</td><td class="value">—</td></tr>
+                <tr><td>Type de Facture</td><td class="value">Autres</td></tr>
+                <tr><td>N° de Siret de la société</td><td>Obligatoire</td></tr>
+                <tr><td>N° de Commande</td><td>Obligatoire</td></tr>
+                <tr><td>N° CAE</td><td>Obligatoire</td></tr>
+                <tr><td>N° de facture</td><td>Obligatoire</td></tr>
+                <tr><td>Interlocuteur</td><td>Obligatoire</td></tr>
+                <tr><td>Montant TTC</td><td>Obligatoire</td></tr>
+                <tr><td>Ajouter une pièce jointe</td><td class="value">Choisir des fichiers</td></tr>
+            </table>
+            <div style="padding:4px 16px 16px;"><span class="form-submit">Envoyer la demande</span></div>
+        </div>
+    </section>
+
+    <!-- ══ 6. MODÈLE DE DONNÉES ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">🗄️</span>Modèle de données</h2>
+        <p class="prose" style="margin-bottom:24px;">La base de données <code>portail_fournisseur</code> (SQL Server) contient trois tables principales gérées via Entity Framework Core. Les migrations EF assurent le versionnage du schéma.</p>
+        <div class="db-schema">
+            <!-- Societes -->
+            <div class="db-table">
+                <div class="db-table-header">dbo.Societes</div>
+                <div class="db-field"><span class="pk">PK</span> ID <span class="null">int, not null</span></div>
+                <div class="db-field">LIBELLE <span class="null">nvarchar, not null</span></div>
+            </div>
+            <!-- Type_Factures -->
+            <div class="db-table">
+                <div class="db-table-header">dbo.Type_Factures</div>
+                <div class="db-field"><span class="pk">PK</span> ID <span class="null">int, not null</span></div>
+                <div class="db-field">LIBELLE <span class="null">nvarchar, not null</span></div>
+                <div class="db-field">EMAIL <span class="null">nvarchar, not null</span></div>
+            </div>
+            <!-- Factures -->
+            <div class="db-table">
+                <div class="db-table-header">dbo.Factures</div>
+                <div class="db-field"><span class="pk">PK</span> ID <span class="null">int, not null</span></div>
+                <div class="db-field">SIRET <span class="null">nvarchar, not null</span></div>
+                <div class="db-field">CAE <span class="null">nvarchar, not null</span></div>
+                <div class="db-field">FACTURE <span class="null">nvarchar, not null</span></div>
+                <div class="db-field"><span class="fk">FK</span> ID_TYPE_FACTURE <span class="null">int</span></div>
+                <div class="db-field">COMMANDE <span class="null">nvarchar, null</span></div>
+                <div class="db-field">CONTRAT <span class="null">nvarchar, null</span></div>
+                <div class="db-field">CONTRAT_DSK <span class="null">nvarchar, null</span></div>
+                <div class="db-field">INTERLOCUTEUR <span class="null">nvarchar, not null</span></div>
+                <div class="db-field">MAIL <span class="null">nvarchar, null</span></div>
+                <div class="db-field">MONTANT_TTC <span class="null">nvarchar, not null</span></div>
+                <div class="db-field">PREFACTURE <span class="null">nvarchar, null</span></div>
+                <div class="db-field"><span class="fk">FK</span> ID_SOCIETE <span class="null">int, null</span></div>
+            </div>
+            <!-- Relations -->
+            <div class="db-relations">
+                <div class="db-relation-line"><span class="rel-arrow">→</span> <strong>Factures.ID_SOCIETE</strong> référence <strong>Societes.ID</strong> (FK_Factures_Societes)</div>
+                <div class="db-relation-line"><span class="rel-arrow">→</span> <strong>Factures.ID_TYPE_FACTURE</strong> référence <strong>Type_Factures.ID</strong> (FK_Factures_Type_Factures)</div>
+                <div class="db-relation-line" style="margin-top:4px;"><span style="font-size:0.75rem; color:var(--text-muted)">Les champs <code>null</code> dans Factures sont conditionnels selon le type (DSK et préfacture uniquement pour Intérim, Contrat uniquement pour Sous Traitance, etc.)</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ 7. EMAIL GÉNÉRÉ ══ -->
+    <section>
+        <h2 class="section-title"><span class="section-icon">📧</span>Email généré automatiquement</h2>
+        <p class="prose" style="margin-bottom:20px;">À chaque soumission, le backend ASP.NET génère et envoie un email structuré vers l'adresse comptabilité correspondante, avec les pièces jointes attachées.</p>
+        <div class="email-preview">
+            <div class="email-header">
+                <div class="email-from">De : WEBSB Smtp · À : Service Comptabilité</div>
+                <div class="email-subject">Mail de facture</div>
+            </div>
+            <div class="email-body">
+                <table class="email-table">
+                    <thead><tr><td colspan="2">Facture</td></tr></thead>
+                    <tbody>
+                        <tr><td>Société</td><td>Spie Batignolles Le Foll</td></tr>
+                        <tr><td>Type de facture</td><td>Sous Traitance</td></tr>
+                        <tr><td>N° de Siret de la société</td><td>37901584687136</td></tr>
+                        <tr><td>N° de Contrat</td><td>5355468</td></tr>
+                        <tr><td>N° CAE</td><td>938669</td></tr>
+                        <tr><td>N° de facture</td><td>86645</td></tr>
+                        <tr><td>Interlocuteur</td><td>BONNIN Luca</td></tr>
+                        <tr><td>Adresse Mail</td><td style="color:#2563eb;">luca.bonnin@spiebatignolles.fr</td></tr>
+                        <tr><td>Montant TTC</td><td>1 500 €</td></tr>
+                    </tbody>
+                </table>
+                <div class="email-note">📎 La facture et les pièces jointes associées sont attachées à cet email.</div>
+            </div>
+        </div>
+    </section>
+
+        <!-- ══ 8. AMÉLIORATIONS ══ -->
+    <!-- <section>
+        <h2 class="section-title"><span class="section-icon">🚀</span>Améliorations possibles</h2>
+        <div class="improvements-list">
+            <div class="improvement-item priority-high">
+                <span class="improvement-badge badge-high">Priorité haute</span>
+                <div class="improvement-content">
+                    <h4>Espace fournisseur authentifié</h4>
+                    <p>Permettre aux fournisseurs de se connecter avec un compte pour consulter l'historique de leurs dépôts, éviter les doublons et suivre le statut de traitement de leurs factures.</p>
+                </div>
+            </div>
+            <div class="improvement-item priority-high">
+                <span class="improvement-badge badge-high">Priorité haute</span>
+                <div class="improvement-content">
+                    <h4>Interface d'administration</h4>
+                    <p>Tableau de bord pour le service comptabilité : visualiser toutes les factures reçues, filtrer par société / type / date, changer le statut (reçue, traitée, rejetée) et exporter en Excel.</p>
+                </div>
+            </div>
+            <div class="improvement-item priority-medium">
+                <span class="improvement-badge badge-medium">Priorité moyenne</span>
+                <div class="improvement-content">
+                    <h4>Validation côté serveur renforcée</h4>
+                    <p>Ajout de contrôles métier : format SIRET (14 chiffres), montant numérique positif, types de fichiers autorisés, taille maximale des pièces jointes.</p>
+                </div>
+            </div>
+            <div class="improvement-item priority-medium">
+                <span class="improvement-badge badge-medium">Priorité moyenne</span>
+                <div class="improvement-content">
+                    <h4>Accusé de réception fournisseur</h4>
+                    <p>Envoyer un email de confirmation au fournisseur avec un récapitulatif de sa soumission et un numéro de dossier unique pour le suivi.</p>
+                </div>
+            </div>
+            <div class="improvement-item priority-low">
+                <span class="improvement-badge badge-low">Priorité basse</span>
+                <div class="improvement-content">
+                    <h4>Gestion des pièces jointes en base</h4>
+                    <p>Stocker les fichiers uploadés sur un serveur de fichiers et conserver leur référence en base de données plutôt que de les transmettre uniquement par email.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <div class="footer-note">
+        <span style="font-size:1.5rem;">🏗️</span>
+        <span>Projet réalisé par <strong style="color:var(--text-secondary)">Luca BONNIN</strong> et <strong style="color:var(--text-secondary)">Timéo Pilatte</strong> — BTS SIO SLAM. Stack : <strong style="color:var(--text-secondary)">C# · ASP.NET Core · Entity Framework · SQL Server</strong>. Actuellement en production chez Spie Batignolles.</span>
+    </div>
+
+</div>
+
+<script>
+    function showTab(name) {
+        document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.form-preview').forEach(p => p.classList.remove('active'));
+        document.getElementById('tab-' + name).classList.add('active');
+        event.target.classList.add('active');
+    }
+</script>
+</body>
+</html>
