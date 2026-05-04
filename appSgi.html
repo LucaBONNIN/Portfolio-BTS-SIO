@@ -53,16 +53,16 @@
             <div class="tech-grid">
                 <div class="tech-card"><div class="tech-icon" style="background:#fee2e2">🔴</div><div><h3>Laravel</h3><div class="version">v12.55+</div><p>Framework PHP full-stack. Routing, ORM Eloquent, queues, policies et authentification.</p></div></div>
                 <div class="tech-card"><div class="tech-icon" style="background:#fef3c7">🟡</div><div><h3>Filament PHP</h3><div class="version">v5.4 — Admin Panel</div><p>Framework SDUI bâti sur Livewire. Génère l'intégralité du back-office depuis des classes PHP.</p></div></div>
-                <div class="tech-card"><div class="tech-icon" style="background:#ede9fe">🟣</div><div><h3>PHP</h3><div class="version">8.4+</div><p>Constructor property promotion, enums natifs, return types stricts, named arguments.</p></div></div>
+                <div class="tech-card"><div class="tech-icon" style="background:#ede9fe">🟣</div><div><h3>PHP</h3><div class="version">8.4+</div><p>Promotion des propriétés dans le constructeur, énumérations natives, types de retour stricts, arguments nommés.</p></div></div>
                 <div class="tech-card"><div class="tech-icon" style="background:#dbeafe">🐘</div><div><h3>PostgreSQL</h3><div class="version">Base de données principale</div><p>Choisi pour sa rigueur sur les contraintes d'intégrité (foreign keys) et ses types avancés.</p></div></div>
-                <div class="tech-card"><div class="tech-icon" style="background:#fce7f3">🔵</div><div><h3>Livewire</h3><div class="version">v4</div><p>Composants réactifs côté serveur. Interactivité sans écrire de JavaScript.</p></div></div>
+                <!-- <div class="tech-card"><div class="tech-icon" style="background:#fce7f3">🔵</div><div><h3>Livewire</h3><div class="version">v4</div><p>Composants réactifs côté serveur. Interactivité sans écrire de JavaScript.</p></div></div> -->
                 <div class="tech-card"><div class="tech-icon" style="background:#ccfbf1">🌊</div><div><h3>Tailwind CSS</h3><div class="version">v4 + Vite</div><p>CSS utility-first intégré dans Filament. Interface responsive sans CSS personnalisé.</p></div></div>
                 <div class="tech-card"><div class="tech-icon" style="background:#dbeafe">🐳</div><div><h3>Docker / Spin Pro</h3><div class="version">Infrastructure as Code</div><p>Environnement conteneurisé : Nginx + PHP-FPM, PostgreSQL, Mailpit.</p></div></div>
-                <div class="tech-card"><div class="tech-icon" style="background:#f0fdf4">🧪</div><div><h3>PHPUnit</h3><div class="version">v11.5</div><p>Tests unitaires et fonctionnels couvrant tous les chemins heureux, d'erreur et cas limites.</p></div></div>
+                <!-- <div class="tech-card"><div class="tech-icon" style="background:#f0fdf4">🧪</div><div><h3>PHPUnit</h3><div class="version">v11.5</div><p>Tests unitaires et fonctionnels couvrant tous les chemins heureux, d'erreur et cas limites.</p></div></div>
                 <div class="tech-card"><div class="tech-icon" style="background:#fff7ed">🛡️</div><div><h3>Filament Shield</h3><div class="version">v4.1 — RBAC</div><p>Rôles et permissions granulaires par resource. Contrôle fin des accès Admin / Personnel.</p></div></div>
                 <div class="tech-card"><div class="tech-icon" style="background:#f3e8ff">📋</div><div><h3>Laravel Auditing</h3><div class="version">v14</div><p>Journalisation automatique : qui a modifié quoi et quand, avec ancien et nouvelle valeur.</p></div></div>
                 <div class="tech-card"><div class="tech-icon" style="background:#fef3c7">🔧</div><div><h3>Laravel Pint</h3><div class="version">Formatage PSR-12</div><p>Formatage automatique du code PHP. Cohérence de style entre tous les contributeurs.</p></div></div>
-                <div class="tech-card"><div class="tech-icon" style="background:#fee2e2">⚡</div><div><h3>Laravel Horizon</h3><div class="version">v5.45</div><p>Dashboard de supervision des queues et jobs asynchrones (ex : notifications email).</p></div></div>
+                <div class="tech-card"><div class="tech-icon" style="background:#fee2e2">⚡</div><div><h3>Laravel Horizon</h3><div class="version">v5.45</div><p>Dashboard de supervision des queues et jobs asynchrones (ex : notifications email).</p></div></div> -->
             </div>
             <h3 style="font-size:1rem;font-weight:700;color:var(--text-secondary);margin:32px 0 14px;text-transform:uppercase;letter-spacing:0.06em;">Étude comparative des stacks envisagées</h3>
             <div class="table-wrapper">
@@ -180,20 +180,7 @@
             </div>
         </section>
 
-        <!-- ══ 6. AMÉLIORATIONS ══
-        <section>
-            <h2 class="section-title"><span class="section-icon">🚀</span>Améliorations possibles</h2>
-            <div class="improvements-list">
-                <div class="improvement-item priority-high"><span class="improvement-badge badge-high">Priorité haute</span><div class="improvement-content"><h4>Dashboard analytique</h4><p>Widgets Filament natifs (<code>StatsOverview</code>, <code>ChartWidget</code>) : montant engagé vs budget restant par service, évolution mensuelle des commandes, top catégories.</p></div></div>
-                <div class="improvement-item priority-high"><span class="improvement-badge badge-high">Priorité haute</span><div class="improvement-content"><h4>Notifications e-mail automatiques</h4><p>E-mail au demandeur à chaque changement de statut. Laravel Notifications + Horizon sont déjà en place — il suffit d'implémenter les déclencheurs sur le modèle Order.</p></div></div>
-                <div class="improvement-item priority-high"><span class="improvement-badge badge-high">Priorité haute</span><div class="improvement-content"><h4>Alerte dépassement budgétaire</h4><p>Bloquer ou avertir quand une demande dépasserait l'enveloppe d'un service. Implémentable comme règle de validation Laravel sur Order.</p></div></div>
-                <div class="improvement-item priority-medium"><span class="improvement-badge badge-medium">Priorité moyenne</span><div class="improvement-content"><h4>Export PDF / Excel</h4><p>Exporter la liste filtrée avec <code>maatwebsite/excel</code> ou <code>barryvdh/laravel-dompdf</code>, intégrés dans une Action Filament.</p></div></div>
-                <div class="improvement-item priority-medium"><span class="improvement-badge badge-medium">Priorité moyenne</span><div class="improvement-content"><h4>Interface dédiée au personnel</h4><p>Panel Filament simplifié : formulaire épuré, suivi de ses propres commandes uniquement, sans accès à l'administration globale.</p></div></div>
-                <div class="improvement-item priority-medium"><span class="improvement-badge badge-medium">Priorité moyenne</span><div class="improvement-content"><h4>Catalogue articles récurrents</h4><p>Référentiel d'articles avec auto-complétion dans les lignes de commande pour réduire les saisies répétitives.</p></div></div>
-                <div class="improvement-item priority-low"><span class="improvement-badge badge-low">Évolution future</span><div class="improvement-content"><h4>Application mobile (PWA)</h4><p>Soumission depuis smartphone, caméra pour photographier un article, scan de code-barres.</p></div></div>
-                <div class="improvement-item priority-low"><span class="improvement-badge badge-low">Évolution future</span><div class="improvement-content"><h4>CI/CD & déploiement production</h4><p>Pipeline GitHub Actions : tests, Pint, déploiement automatisé. Les <code>docker-compose.prod.yml</code> sont déjà présents.</p></div></div>
-            </div>
-        </section>-->
+
 
         <div class="footer-note">
             <span style="font-size:1.4rem">💡</span>

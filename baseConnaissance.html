@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de connaissance — Luca BONNIN</title>
+    <link rel="stylesheet" href="CSS/styleBaseConnaissance.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <a href="index.html#missions" class="back-link">← Retour aux missions support</a>
+
+        <header class="project-header">
+            <h1>Base de connaissance</h1>
+            <p class="subtitle">Création de réponses rapides pour accélérer la résolution des tickets</p>
+        </header>
+
+        <div class="tags">
+            <span class="tag doc">Documentation</span>
+        </div>
+
+        <!-- ══ CONTEXTE ══ -->
+        <section>
+            <h2 class="section-title"><span class="section-icon">📋</span>Contexte</h2>
+            <div class="context-card">
+                <p>Mission réalisée dans le cadre de mon <strong>alternance de technicien informatique</strong> (octobre 2024 — septembre 2026), en parallèle du traitement quotidien des tickets sur ServiceNow.</p>
+                <p>Avec l'équipe, nous avons construit une <strong>base de connaissance interne</strong> regroupant des <strong>réponses rapides</strong> : templates de mails et articles KB destinés à standardiser et accélérer le traitement des cas récurrents.</p>
+                <p>Cette base est aujourd'hui <strong>activement utilisée par l'équipe</strong> pour gagner en efficacité sur la résolution des tickets — moins de temps passé à reformuler les mêmes réponses, plus de cohérence dans les communications utilisateurs.</p>
+            </div>
+        </section>
+
+        <!-- ══ MA CONTRIBUTION ══ -->
+        <section>
+            <h2 class="section-title"><span class="section-icon">✏️</span>Ma contribution</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-emoji" style="background:#dcfce7">🚀</div>
+                        <h3>Initialisation de la base</h3>
+                    </div>
+                    <p>Avec mes collègues, j'ai participé à la <strong>création des premières réponses rapides</strong> qui constituent aujourd'hui le socle de la base utilisée par l'équipe.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-emoji" style="background:#dbeafe">📱</div>
+                        <h3>Procédures téléphone</h3>
+                    </div>
+                    <p>J'ai personnellement fait <strong>avancer la documentation des procédures liées aux téléphones professionnels</strong> : paramétrage VPN, accès aux ressources et dépannages courants.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ CAPTURES ══ -->
+        <section>
+            <h2 class="section-title"><span class="section-icon">📸</span>Captures</h2>
+
+            <div class="diagram-block">
+                <div class="diagram-label">Vue de la base de connaissance</div>
+                <p class="diagram-desc">Écran principal regroupant l'ensemble des réponses rapides classées et accessibles à l'équipe.</p>
+                <div class="diagram-thumb lb-trigger" data-cap="Base de connaissance">
+                    <img src="Image/kb-overview.png" alt="Base de connaissance">
+                    <span class="hint">🔍 Cliquer pour agrandir</span>
+                </div>
+            </div>
+
+            <div class="diagram-block">
+                <div class="diagram-label">Exemple de réponse rapide</div>
+                <p class="diagram-desc">Détail d'un article KB : procédure, contexte d'utilisation et template de réponse prêt à l'emploi.</p>
+                <div class="diagram-thumb lb-trigger" data-cap="Exemple de réponse rapide">
+                    <img src="Image/kb-example.png" alt="Exemple de réponse rapide">
+                    <span class="hint">🔍 Cliquer pour agrandir</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lb">
+        <button id="lb-x">✕</button>
+        <img id="lb-img" src="" alt="">
+        <div id="lb-cap"></div>
+    </div>
+
+    <script>
+        const lb = document.getElementById('lb');
+        const lbImg = document.getElementById('lb-img');
+        const lbCap = document.getElementById('lb-cap');
+        const lbX = document.getElementById('lb-x');
+
+        document.querySelectorAll('.lb-trigger').forEach(t => {
+            t.addEventListener('click', () => {
+                const img = t.querySelector('img');
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                lbCap.textContent = t.dataset.cap || img.alt;
+                lb.classList.add('on');
+            });
+        });
+        function closeLb() { lb.classList.remove('on'); }
+        lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+        lbX.addEventListener('click', closeLb);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+    </script>
+</body>
+</html>
